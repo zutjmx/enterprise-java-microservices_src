@@ -1,0 +1,113 @@
+{
+  "realm": "cayambe",
+  "enabled": true,
+  "accessTokenLifespan": 60,
+  "accessCodeLifespan": 60,
+  "accessCodeLifespanUserAction": 300,
+  "ssoSessionIdleTimeout": 600,
+  "ssoSessionMaxLifespan": 36000,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "ken",
+      "enabled": true,
+      "email": "ken@ken.com",
+      "firstName": "Ken",
+      "lastName": "Finnigan",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "admin",
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account"
+        ]
+      }
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "email": "bob@bob.com",
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account"
+        ]
+      }
+    },
+    {
+      "username": "service-account-payment-service",
+      "enabled": true,
+      "serviceAccountClientId": "payment-authz-service",
+      "realmRoles": [
+        "stripe-service-access"
+      ]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "User privileges"
+      },
+      {
+        "name": "admin",
+        "description": "Administrator privileges"
+      },
+      {
+        "name": "stripe-service-access",
+        "description": "Stripe service access privileges"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "cayambe-admin-ui",
+      "enabled": true,
+      "publicClient": true,
+      "baseUrl": "http://localhost:8080",
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ]
+    },
+    {
+      "clientId": "cayambe-admin-service",
+      "enabled": true,
+      "bearerOnly": true
+    },
+    {
+      "clientId": "payment-authz-service",
+      "secret": "secret",
+      "enabled": true,
+      "standardFlowEnabled": false,
+      "serviceAccountsEnabled": true
+    },
+    {
+      "clientId": "stripe-service",
+      "enabled": true,
+      "bearerOnly": true
+    }
+  ]
+}
